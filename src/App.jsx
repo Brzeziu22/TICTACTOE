@@ -17,8 +17,8 @@ function App() {
     <main>
       <div id="game-container">
         <ol id='players'>
-          <Player  name={player1Name} symbol='X' handleNameChange={handleNameChange}>Player1</Player>{/*Adding player component including span or input and button that turns Edit mode add Player1 children prop to recognize in whitch component changes occure */}
-          <Player  name={player2Name} symbol='O' handleNameChange={handleNameChange}>Player2</Player>{}
+          <Player  name={player1Name} symbol='X' handleNameChange={handleNameChange}/>
+          <Player  name={player2Name} symbol='O' handleNameChange={handleNameChange}/>
         </ol>
 
         Game Board
