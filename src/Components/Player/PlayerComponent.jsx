@@ -1,5 +1,5 @@
 import { Children, useState } from "react";
-const Player=({name,symbol,handleNameChange,children})=>{
+const Player=({name,symbol,handleNameChange,isActive})=>{
     const [editOn,setEditOn]=useState(false);
     const [inputValue,setInputValue]=useState(name);
     
@@ -23,7 +23,7 @@ const Player=({name,symbol,handleNameChange,children})=>{
     const inputTag=<input value={inputValue} onChange={()=>{setInputValue(event.target.value)}} ></input>;
 
     return(
-        <li>
+        <li className={isActive ? 'active': undefined}>
             <span className="player">
               {editOn? inputTag  :nameTag}{/*Using value? true:false opperator to make changes on button click */}
               <span className="player-symbol">{symbol}</span>

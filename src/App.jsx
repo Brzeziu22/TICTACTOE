@@ -3,8 +3,14 @@ import GameBoard from "./Components/GameBoard/GameBoardComponent";
 
 import Player from "./Components/Player/PlayerComponent"
 function App() {
+  const[activePlayer,setActivePLayer]=useState('X')
   const[player1Name,setPlayer1Name]=useState('MAX');
-  const[player2Name,setPlayer2Name]=useState('MAX');
+  const[player2Name,setPlayer2Name]=useState('Tom');
+
+  const handleSelectSquare=()=>{
+    setActivePLayer((currActivePlayer)=>currActivePlayer=== 'X' ? 'O' : 'X' )
+  }
+
 
   const handleNameChange=(name1,name2)=>{
       if(name1){
@@ -17,12 +23,12 @@ function App() {
   return (
     <main>
       <div id="game-container">
-        <ol id='players'>
-          <Player  name={player1Name} symbol='X' handleNameChange={handleNameChange}/>
-          <Player  name={player2Name} symbol='O' handleNameChange={handleNameChange}/>
+        <ol id='players' className="highlight-player">
+          <Player  name={player1Name} symbol='X' handleNameChange={handleNameChange} isActive={activePlayer==='X'}/>
+          <Player  name={player2Name} symbol='O' handleNameChange={handleNameChange} isActive={activePlayer==='O'}/>
         </ol>
 
-        <GameBoard/>
+        <GameBoard onSelectSquare={handleSelectSquare} activeSymbol={activePlayer}/>
       </div>  
       LOG
     </main>
