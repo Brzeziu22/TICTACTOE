@@ -1,11 +1,11 @@
 import { Children, useState } from "react";
 const Player=({name,symbol,handleNameChange,children})=>{
     const [editOn,setEditOn]=useState(false);
-    const [inputValue,setInputValue]=useState('');
+    const [inputValue,setInputValue]=useState(name);
     
 {/* Creating handle click for both types of buttons */}
     const handleEditButtonClick=()=>{{/* Changing from edit to save button */}
-        setEditOn(!editOn);
+        setEditOn((editing)=>!editing);
     
     }
     const handleSaveButtonClick=()=>{{/* Checking in whitch component changes occure and change name of one player depending on component we make changes*/}

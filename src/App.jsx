@@ -1,4 +1,5 @@
 import { useState } from "react"
+import GameBoard from "./Components/GameBoard/GameBoardComponent";
 
 import Player from "./Components/Player/PlayerComponent"
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Player  name={player2Name} symbol='O' handleNameChange={handleNameChange}/>
         </ol>
 
-        Game Board
+        <GameBoard/>
       </div>  
       LOG
     </main>
