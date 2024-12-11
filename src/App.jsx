@@ -3,16 +3,16 @@ import GameBoard from "./Components/GameBoard/GameBoardComponent";
 
 import Player from "./Components/Player/PlayerComponent"
 function App() {
-  const[activePlayer,setActivePLayer]=useState('X')
+  const[activePlayer,setActivePLayer]=useState('X')/* states that helps store information about players and what symbol should be put on board next*/
   const[player1Name,setPlayer1Name]=useState('MAX');
   const[player2Name,setPlayer2Name]=useState('Tom');
 
   const handleSelectSquare=()=>{
-    setActivePLayer((currActivePlayer)=>currActivePlayer=== 'X' ? 'O' : 'X' )
+    setActivePLayer((currActivePlayer)=>currActivePlayer=== 'X' ? 'O' : 'X' )/*changing symbol function that is called in GameBoard component to change symbol after clik on a square field */
   }
 
 
-  const handleNameChange=(name1,name2)=>{
+  const handleNameChange=(name1,name2)=>{/*function that recognize whitch player name should be changed based on given arguments in Player component */
       if(name1){
         setPlayer1Name(name1)
       }

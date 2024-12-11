@@ -14,7 +14,7 @@ const Player=({name,symbol,handleNameChange,isActive})=>{
         if(symbol=='X'){
         handleNameChange(inputValue,false);}
         if(symbol=='O'){
-            handleNameChange(false , inputValue);
+            handleNameChange(false , inputValue);/*passing to function either first or second argument to change name of good player*/
         }
     }
     const editButton=<button onClick={handleEditButtonClick}>Edit</button>;{/*Creating variables for reneder elements making code clear */}
