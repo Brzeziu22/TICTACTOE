@@ -6,10 +6,17 @@ const initialGameBoard=[
     [null,null,null]
 ]/** initial game board used for first render of a component */
 
-const GameBoard=({onSelectSquare,activeSymbol})=>{
+const GameBoard=({onSelectSquare,activeSymbol,moveList})=>{
 
-    const [gameBoard,setGameBoard]=useState(initialGameBoard); /**placing initial game board into state to change values later on */
-
+    //const [gameBoard,setGameBoard]=useState(initialGameBoard); /**placing initial game board into state to change values later on */
+     let gameBoard=initialGameBoard;
+        console.log(moveList)
+     for(const move of moveList){
+        
+        const {square,player} = move;
+        const {row,col} = square;
+        gameBoard[row][col]=player;
+     }
     const handleSelectedSquare=(rowIndex,collumnIndex)=>{
         setGameBoard((prevGameBoard)=>{
             const updatedGameBoard=[...prevGameBoard.map(innerArray=>([...innerArray]))];/**making copy of actual state before we change it */
@@ -23,7 +30,7 @@ const GameBoard=({onSelectSquare,activeSymbol})=>{
     <ol id='game-board'>
         {gameBoard.map((row,rowIndex)=><li key={rowIndex}>
             <ol>
-            {row.map((playerSymbol,collumnIndex)=><li key={collumnIndex}><button onClick={()=>handleSelectedSquare(rowIndex,collumnIndex)}>{playerSymbol}</button></li>)}{/** rendering 3x3 grid of nested arrays using map function first one is for main array and the second one for array nested in main array */}
+            {row.map((playerSymbol,colIndex)=><li key={colIndex}><button onClick={()=>onSelectSquare(rowIndex,colIndex)}>{playerSymbol}</button></li>)}{/** rendering 3x3 grid of nested arrays using map function first one is for main array and the second one for array nested in main array */}
             </ol>
         </li>)}    
     </ol>
