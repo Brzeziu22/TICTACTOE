@@ -17,14 +17,7 @@ const GameBoard=({onSelectSquare,activeSymbol,moveList})=>{
         const {row,col} = square;
         gameBoard[row][col]=player;
      }
-    const handleSelectedSquare=(rowIndex,collumnIndex)=>{
-        setGameBoard((prevGameBoard)=>{
-            const updatedGameBoard=[...prevGameBoard.map(innerArray=>([...innerArray]))];/**making copy of actual state before we change it */
-            updatedGameBoard[rowIndex][collumnIndex]=activeSymbol;/*changing sybol for the one that should be placed next. Working of state copy instead of original prev state because when we changing state that is array of object we working on refference what can lead to errors later on if we will want to update that state in more places  */
-            return updatedGameBoard;
-        })
-        onSelectSquare();/** Changing active player state in App component */
-    }
+   //generating game board based on players move list 
 
     return(
     <ol id='game-board'>
