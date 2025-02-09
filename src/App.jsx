@@ -43,7 +43,8 @@ function App() {
    const secondSymbol=gameBoard[combination[1].row][combination[1].column]
    const thridSymbol=gameBoard[combination[2].row][combination[2].column]
     if(firstSymbol && firstSymbol===secondSymbol && firstSymbol === thridSymbol){
-      console.log("WE Have A WINNER")
+
+      setTimeout(function() {alert(`${playerMoveList[0].player==='X'?player1Name:player2Name} Win!`)}, 100);
     }
 
   }
