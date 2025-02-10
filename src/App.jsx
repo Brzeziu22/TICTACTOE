@@ -2,6 +2,7 @@ import { useState } from "react"
 import GameBoard from "./Components/GameBoard/GameBoardComponent";
 import Log from "./Components/Log/LogComponent";
 import Player from "./Components/Player/PlayerComponent"
+import GameOver from "./Components/GameOver/GameOverComponent";
 import { WINNING_COMBINATIONS } from "./Components/WinningCombinations";
 
 const initialGameBoard=[
@@ -19,15 +20,15 @@ function deriveAcctivePlayer(playerMoveList){
       return currentPlayer;
 
 }
-let gameBoard=initialGameBoard;
-function App() {
 
+function App() {
+  let gameBoard=[...initialGameBoard.map(array=>[...array])];
   const [playerMoveList,setPlayerMoveList]= useState([]);
   const[activePlayer,setActivePLayer]=useState('X')/* states that helps store information about players and what symbol should be put on board next*/
   const[player1Name,setPlayer1Name]=useState('MAX');
   const[player2Name,setPlayer2Name]=useState('Tom');
 
- 
+ let winner=null;
 
   for(const move of playerMoveList){
   
@@ -43,12 +44,12 @@ function App() {
    const secondSymbol=gameBoard[combination[1].row][combination[1].column]
    const thridSymbol=gameBoard[combination[2].row][combination[2].column]
     if(firstSymbol && firstSymbol===secondSymbol && firstSymbol === thridSymbol){
-
-      setTimeout(function() {alert(`${playerMoveList[0].player==='X'?player1Name:player2Name} Win!`)}, 100);
+      //setTimeout(function() {alert(`${playerMoveList[0].player==='X'?player1Name:player2Name} Win!`)}, 100);
+      winner= firstSymbol;
     }
 
   }
-
+   const hasDraw= playerMoveList.length===9 && !winner;
   const handleSelectSquare=(rowIndex,colIndex)=>{ 
    // setActivePLayer((currActivePlayer)=>currActivePlayer=== 'X' ? 'O' : 'X' )/*changing symbol function that is called in GameBoard component to change symbol after clik on a square field */
     setPlayerMoveList(prevList=>{
@@ -70,6 +71,9 @@ function App() {
         setPlayer2Name(name2)
       }
   }
+  const handleRestart=()=>{
+    setPlayerMoveList([]);
+  }
   return (
     <main>
       <div id="game-container">
@@ -77,7 +81,7 @@ function App() {
           <Player  name={player1Name} symbol='X' handleNameChange={handleNameChange} isActive={activePlayerr==='X'}/>
           <Player  name={player2Name} symbol='O' handleNameChange={handleNameChange} isActive={activePlayerr==='O'}/>
         </ol>
-
+        {(winner|| hasDraw) && <GameOver winner={winner} onRestart={handleRestart}/>}
         <GameBoard onSelectSquare={handleSelectSquare} activeSymbol={activePlayerr}  board={gameBoard}/>
       </div>  
       <Log turns={playerMoveList} p1Name={player1Name} p2Name={player2Name}/>
